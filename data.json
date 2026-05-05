@@ -14,22 +14,55 @@
   },
   "stats": {
     "items": [
-      { "icon": "fas fa-user-tie", "number": "200+", "label": "Tuyển thủ" },
-      { "icon": "fas fa-building", "number": "30+", "label": "Nhãn hàng uy tín" },
-      { "icon": "fas fa-trophy", "number": "20+", "label": "Danh mục giải thưởng" },
-      { "icon": "fas fa-handshake", "number": "5+", "label": "Đơn vị tài trợ" }
+      {
+        "icon": "fas fa-user-tie",
+        "number": "200+",
+        "label": "Tuyển thủ"
+      },
+      {
+        "icon": "fas fa-building",
+        "number": "30+",
+        "label": "Nhãn hàng uy tín"
+      },
+      {
+        "icon": "fas fa-trophy",
+        "number": "20+",
+        "label": "Danh mục giải thưởng"
+      },
+      {
+        "icon": "fas fa-handshake",
+        "number": "5+",
+        "label": "Đơn vị tài trợ"
+      }
     ]
   },
   "about": {
     "title": "Về Chương Trình",
     "description": "Top Beauty & Wellness Awards 2026 là sự kiện vinh danh những cá nhân và thương hiệu xuất sắc nhất trong ngành Làm Đẹp & Chăm Sóc Sức Khoẻ tại Việt Nam.",
     "features": [
-      { "icon": "fas fa-gem", "title": "Tiêu chuẩn quốc tế", "desc": "Quy trình đánh giá & giám khảo theo chuẩn quốc tế" },
-      { "icon": "fas fa-globe-asia", "title": "Kết nối toàn cầu", "desc": "Cầu nối giữa doanh nghiệp Việt Nam với thị trường quốc tế" },
-      { "icon": "fas fa-star", "title": "Nâng tầm thương hiệu", "desc": "Vinh danh và PR đa kênh cho người đạt giải" }
+      {
+        "icon": "fas fa-gem",
+        "title": "Tiêu chuẩn quốc tế",
+        "desc": "Quy trình đánh giá & giám khảo theo chuẩn quốc tế"
+      },
+      {
+        "icon": "fas fa-globe-asia",
+        "title": "Kết nối toàn cầu",
+        "desc": "Cầu nối giữa doanh nghiệp Việt Nam với thị trường quốc tế"
+      },
+      {
+        "icon": "fas fa-star",
+        "title": "Nâng tầm thương hiệu",
+        "desc": "Vinh danh và PR đa kênh cho người đạt giải"
+      }
     ]
   },
-  "speakers": [],
+  "speakers": [
+    {
+      "id": "id_1778000484934_01ycf3",
+      "name": "Mới"
+    }
+  ],
   "sponsors": [],
   "advisors": [],
   "judges": [],
