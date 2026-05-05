@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Beauty & Wellness Awards 2026 — Kết Nối Tinh Hoa, Nâng Tầm Vị Thế</title>
+    <meta name="description" content="Hội Nghị Quốc Tế Ngành Làm Đẹp & Chăm Sóc Sức Khoẻ lớn nhất 2026 tại Hạ Long. Đăng ký ngay để nâng tầm thương hiệu & sự nghiệp!">
+    <meta property="og:title" content="Top Beauty & Wellness Awards 2026">
+    <meta property="og:description" content="Kết Nối Tinh Hoa — Nâng Tầm Vị Thế. 19.05.2026 tại Thành phố Hạ Long.">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Particle Canvas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- ===================== STICKY CTA BAR ===================== -->
+    <div class="sticky-cta" id="stickyCta">
+        <div class="sticky-inner">
+            <div class="sticky-info">
+                <span class="sticky-badge pulse-badge" id="stickyBadge">🔥 Chỉ còn 50 suất</span>
+                <span class="sticky-text" id="stickyText">Top Beauty & Wellness Awards 2026 — 19.05.2026</span>
+            </div>
+            <a href="#register" class="btn btn-gold btn-sm" id="stickyCtaBtn">ĐĂNG KÝ NGAY <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <!-- ===================== NAVBAR ===================== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <div class="logo-icon"><i class="fas fa-award"></i></div>
+                <div class="logo-text">
+                    <span class="logo-main">TOP BEAUTY</span>
+                    <span class="logo-sub">& WELLNESS AWARDS</span>
+                </div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">Giới thiệu cuộc thi</a></li>
+                <li><a href="#speakers">Diễn giả</a></li>
+                <li><a href="#sponsors">Nhà tài trợ</a></li>
+                <li><a href="#advisors">Ban cố vấn</a></li>
+                <li><a href="#judges">Ban giám khảo</a></li>
+                <li><a href="#contestants">Tuyển thủ</a></li>
+                <li><a href="#register" class="nav-cta" id="navCtaBtn">Đăng Ký Ngay</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===================== 1. HERO SECTION ===================== -->
+    <section class="hero" id="hero">
+        <div class="hero-bg-image" id="heroBanner" style="background-image: url('images/hero-bg.png')"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-decorations">
+            <div class="hero-trophy hero-trophy-left"><i class="fas fa-trophy"></i></div>
+            <div class="hero-trophy hero-trophy-right"><i class="fas fa-trophy"></i></div>
+            <div class="golden-ribbon ribbon-left"></div>
+            <div class="golden-ribbon ribbon-right"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-star"><i class="fas fa-star"></i></span>
+                <span id="heroBadgeText">HỘI NGHỊ QUỐC TẾ 2026</span>
+                <span class="badge-star"><i class="fas fa-star"></i></span>
+            </div>
+            <p class="hero-subtitle" id="heroSubtitle">NGÀNH LÀM ĐẸP & CHĂM SÓC SỨC KHOẺ</p>
+            <h1 class="hero-title">
+                <span class="title-top">TOP BEAUTY</span>
+                <span class="title-amp">&</span>
+                <span class="title-wellness">WELLNESS</span>
+                <span class="title-awards">AWARDS <span class="title-year">2026</span></span>
+            </h1>
+            <div class="hero-divider">
+                <span class="divider-line"></span>
+                <span class="divider-diamond"><i class="fas fa-gem"></i></span>
+                <span class="divider-line"></span>
+            </div>
+            <p class="hero-slogan" id="heroSlogan">KẾT NỐI TINH HOA — NÂNG TẦM VỊ THẾ</p>
+
+            <!-- Event info -->
+            <div class="hero-event-info">
+                <div class="event-info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span id="heroLocation">Thành phố Hạ Long</span>
+                </div>
+                <div class="event-info-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span id="heroDate">19.05.2026</span>
+                </div>
+            </div>
+
+            <!-- Countdown Timer -->
+            <div class="countdown">
+                <div class="countdown-item">
+                    <span class="countdown-number" id="days">00</span>
+                    <span class="countdown-label">Ngày</span>
+                </div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="hours">00</span>
+                    <span class="countdown-label">Giờ</span>
+                </div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="minutes">00</span>
+                    <span class="countdown-label">Phút</span>
+                </div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="seconds">00</span>
+                    <span class="countdown-label">Giây</span>
+                </div>
+            </div>
+
+            <div class="hero-cta">
+                <a href="#register" class="btn btn-gold btn-glow btn-lg" id="heroCtaBtn">
+                    <i class="fas fa-ticket-alt"></i> ĐĂNG KÝ THAM GIA NGAY
+                </a>
+            </div>
+            <p class="hero-trust" id="heroTrust">
+                <i class="fas fa-check-circle"></i> 
+                Hơn <strong>200+</strong> tuyển thủ & chuyên gia ngành tham gia
+            </p>
+        </div>
+        <div class="hero-scroll-indicator">
+            <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+            <span>Cuộn xuống</span>
+        </div>
+    </section>
+
+    <!-- ===================== STATS BANNER ===================== -->
+    <section class="stats-banner">
+        <div class="container">
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-item">
+                    <div class="stat-icon"><i class="fas fa-user-tie"></i></div>
+                    <div class="stat-number" data-target="200">0</div>
+                    <div class="stat-label">Tuyển thủ</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon"><i class="fas fa-building"></i></div>
+                    <div class="stat-number" data-target="30">0</div>
+                    <div class="stat-label">Nhãn hàng uy tín</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon"><i class="fas fa-trophy"></i></div>
+                    <div class="stat-number" data-target="20">0</div>
+                    <div class="stat-label">Danh mục giải thưởng</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon"><i class="fas fa-handshake"></i></div>
+                    <div class="stat-number" data-target="5">0</div>
+                    <div class="stat-label">Đơn vị tài trợ</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== 2. GIỚI THIỆU CUỘC THI ===================== -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">GIỚI THIỆU</span>
+                <h2 class="section-title">Về <span class="gold-text-dark">Cuộc Thi</span></h2>
+                <div class="section-divider">
+                    <span class="divider-line"></span>
+                    <span class="divider-icon"><i class="fas fa-award"></i></span>
+                    <span class="divider-line"></span>
+                </div>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="about-lead" id="aboutLead"><strong>Top Beauty & Wellness Awards 2026</strong> là sự kiện tôn vinh những cá nhân và tổ chức xuất sắc nhất trong ngành Làm Đẹp & Chăm Sóc Sức Khỏe tại Việt Nam.</p>
+                    <div class="about-features" id="aboutFeatures">
+                        <div class="about-feature">
+                            <div class="about-feature-icon"><i class="fas fa-gem"></i></div>
+                            <div>
+                                <h4>Tiêu chuẩn quốc tế</h4>
+                                <p>Quy trình đánh giá & giám khảo theo chuẩn quốc tế</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-icon"><i class="fas fa-globe-asia"></i></div>
+                            <div>
+                                <h4>Kết nối toàn cầu</h4>
+                                <p>Cầu nối giữa doanh nghiệp Việt Nam với thị trường quốc tế</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-icon"><i class="fas fa-star"></i></div>
+                            <div>
+                                <h4>Nâng tầm thương hiệu</h4>
+                                <p>Vinh danh và PR đa kênh cho người đạt giải</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="images/trophy.png" alt="Top Beauty Awards Trophy" loading="lazy">
+                    <div class="about-image-badge">
+                        <span class="badge-year">2026</span>
+                        <span class="badge-text">LẦN ĐẦU TỔ CHỨC</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== 3. DIỄN GIẢ ===================== -->
+    <section class="speakers" id="speakers">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge light">DIỄN GIẢ & CHUYÊN MÔN</span>
+                <h2 class="section-title light">Hội Đồng Chuyên Môn & <span class="gold-text">Diễn Giả</span></h2>
+                <div class="section-divider">
+                    <span class="divider-line"></span>
+                    <span class="divider-icon"><i class="fas fa-microphone-alt"></i></span>
+                    <span class="divider-line"></span>
+                </div>
+                <p class="section-desc light">Quy tụ các chuyên gia đầu ngành, CEO, bác sĩ, giảng viên quốc tế trong lĩnh vực làm đẹp và chăm sóc sức khỏe.</p>
+            </div>
+            <div class="carousel-wrapper">
+                <button class="carousel-btn carousel-btn-left" data-carousel="speakersCarousel"><i class="fas fa-chevron-left"></i></button>
+                <div class="carousel-track" id="speakersCarousel">
+                    <div class="speaker-card">
+                        <div class="speaker-image">
+                            <img src="images/speaker-1.png" alt="Mr. Choi Jung In" loading="lazy">
+                            <div class="speaker-badge-role">Chủ tịch Hiệp hội</div>
+                        </div>
+                        <div class="speaker-info">
+                            <h3 class="speaker-name">Mr. Choi Jung In</h3>
+                            <p class="speaker-title">Chủ tịch Hiệp hội doanh nghiệp Beauty Việt Nam Hàn Quốc</p>
+                            <p class="speaker-desc">GDPT dự án chính phủ Hàn Quốc ngành Beauty - Itheall Seoul</p>
+                        </div>
+                    </div>
+                    <div class="speaker-card speaker-card-featured">
+                        <div class="speaker-image">
+                            <img src="images/speaker-2.png" alt="Mr. Trần Ngọc" loading="lazy">
+                            <div class="speaker-badge-role">CEO</div>
+                        </div>
+                        <div class="speaker-info">
+                            <h3 class="speaker-name">Mr. Trần Ngọc</h3>
+                            <p class="speaker-title">CEO Công ty CP đầu tư Phát triển giáo dục Tago Academy</p>
+                            <p class="speaker-desc">Cổ đông tập đoàn Phoenix Universal - Trường TC21 Phoenix</p>
+                        </div>
+                    </div>
+                    <div class="speaker-card">
+                        <div class="speaker-image">
+                            <img src="images/speaker-3.png" alt="Mr. Nguyễn Danh Hùng" loading="lazy">
+                            <div class="speaker-badge-role">Tiến sĩ</div>
+                        </div>
+                        <div class="speaker-info">
+                            <h3 class="speaker-name">Mr. Nguyễn Danh Hùng</h3>
+                            <p class="speaker-title">Tiến sĩ - Trưởng Khoa sau Đại Học</p>
+                            <p class="speaker-desc">Phó Hiệu trưởng Trường TC21 Phoenix</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn carousel-btn-right" data-carousel="speakersCarousel"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== 4. NHÀ TÀI TRỢ ===================== -->
+    <section class="sponsors" id="sponsors">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">NHÀ TÀI TRỢ</span>
+                <h2 class="section-title">Đơn Vị <span class="gold-text-dark">Tài Trợ</span></h2>
+                <div class="section-divider">
+                    <span class="divider-line"></span>
+                    <span class="divider-icon"><i class="fas fa-handshake"></i></span>
+                    <span class="divider-line"></span>
+                </div>
+                <p class="section-desc">Đồng hành cùng các nhãn hàng uy tín hàng đầu ngành làm đẹp & chăm sóc sức khỏe</p>
+            </div>
+            <div class="carousel-wrapper">
+                <button class="carousel-btn carousel-btn-left" data-carousel="sponsorsCarousel"><i class="fas fa-chevron-left"></i></button>
+                <div class="carousel-track" id="sponsorsCarousel">
+                    <div class="sponsor-card">
+                        <div class="sponsor-logo"><i class="fas fa-gem"></i></div>
+                        <h3>Tago Academy</h3>
+                        <p>Nhà tài trợ Kim Cương</p>
+                    </div>
+                    <div class="sponsor-card">
+                        <div class="sponsor-logo"><i class="fas fa-crown"></i></div>
+                        <h3>Phoenix Universal</h3>
+                        <p>Nhà tài trợ Vàng</p>
+                    </div>
+                    <div class="sponsor-card">
+                        <div class="sponsor-logo"><i class="fas fa-star"></i></div>
+                        <h3>Itheall Seoul</h3>
+                        <p>Nhà tài trợ Vàng</p>
+                    </div>
+                    <div class="sponsor-card">
+                        <div class="sponsor-logo"><i class="fas fa-award"></i></div>
+                        <h3>Beauty Connect VN</h3>
+                        <p>Nhà tài trợ Bạc</p>
+                    </div>
+                    <div class="sponsor-card">
+                        <div class="sponsor-logo"><i class="fas fa-flask"></i></div>
+                        <h3>K-Beauty Lab</h3>
+                        <p>Nhà tài trợ Bạc</p>
+                    </div>
+                    <div class="sponsor-card">
+                        <div class="sponsor-logo"><i class="fas fa-spa"></i></div>
+                        <h3>Derma Plus Clinic</h3>
+                        <p>Nhà tài trợ Đồng</p>
+                    </div>
+                </div>
+                <button class="carousel-btn carousel-btn-right" data-carousel="sponsorsCarousel"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== 5. BAN CỐ VẤN ===================== -->
+    <section class="advisors" id="advisors">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge light">BAN CỐ VẤN</span>
+                <h2 class="section-title light">Ban <span class="gold-text">Cố Vấn</span></h2>
+                <div class="section-divider">
+                    <span class="divider-line"></span>
+                    <span class="divider-icon"><i class="fas fa-user-shield"></i></span>
+                    <span class="divider-line"></span>
+                </div>
+                <p class="section-desc light">Những chuyên gia hàng đầu đồng hành cố vấn chiến lược cho cuộc thi</p>
+            </div>
+            <div class="carousel-wrapper">
+                <button class="carousel-btn carousel-btn-left" data-carousel="advisorsCarousel"><i class="fas fa-chevron-left"></i></button>
+                <div class="carousel-track" id="advisorsCarousel">
+                    <div class="person-card">
+                        <div class="person-image">
+                            <img src="images/advisor-1.png" alt="Ms. Nguyễn Thu Hà" loading="lazy">
+                            <div class="person-badge">Cố vấn</div>
+                        </div>
+                        <div class="person-info">
+                            <h3>Ms. Nguyễn Thu Hà</h3>
+                            <p class="person-title">Chủ tịch HĐQT</p>
+                            <p class="person-org">VN Beauty Association</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-image">
+                            <img src="images/advisor-2.png" alt="Mr. Lê Hoàng Minh" loading="lazy">
+                            <div class="person-badge">Cố vấn</div>
+                        </div>
+                        <div class="person-info">
+                            <h3>Mr. Lê Hoàng Minh</h3>
+                            <p class="person-title">Phó Chủ tịch</p>
+                            <p class="person-org">Hiệp hội Spa & Thẩm mỹ VN</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-image">
+                            <img src="images/advisor-3.png" alt="PGS.TS Trần Minh Châu" loading="lazy">
+                            <div class="person-badge">Cố vấn</div>
+                        </div>
+                        <div class="person-info">
+                            <h3>PGS.TS Trần Minh Châu</h3>
+                            <p class="person-title">Giáo sư Y học</p>
+                            <p class="person-org">ĐH Y Hà Nội</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn carousel-btn-right" data-carousel="advisorsCarousel"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== 6. BAN GIÁM KHẢO ===================== -->
+    <section class="judges" id="judges">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">BAN GIÁM KHẢO</span>
+                <h2 class="section-title">Ban <span class="gold-text-dark">Giám Khảo</span></h2>
+                <div class="section-divider">
+                    <span class="divider-line"></span>
+                    <span class="divider-icon"><i class="fas fa-gavel"></i></span>
+                    <span class="divider-line"></span>
+                </div>
+                <p class="section-desc">Hội đồng giám khảo uy tín, khách quan, đảm bảo chất lượng cuộc thi</p>
+            </div>
+            <div class="carousel-wrapper">
+                <button class="carousel-btn carousel-btn-left" data-carousel="judgesCarousel"><i class="fas fa-chevron-left"></i></button>
+                <div class="carousel-track" id="judgesCarousel">
+                    <div class="person-card person-card-judge">
+                        <div class="person-image">
+                            <img src="images/judge-1.png" alt="Dr. Park Seo Yeon" loading="lazy">
+                            <div class="person-badge">Giám khảo</div>
+                        </div>
+                        <div class="person-info">
+                            <h3>Dr. Park Seo Yeon</h3>
+                            <p class="person-title">Bác sĩ Da liễu</p>
+                            <p class="person-org">Seoul Derma Clinic</p>
+                        </div>
+                    </div>
+                    <div class="person-card person-card-judge">
+                        <div class="person-image">
+                            <img src="images/judge-2.png" alt="Mr. Đặng Hoàng Vũ" loading="lazy">
+                            <div class="person-badge">Giám khảo</div>
+                        </div>
+                        <div class="person-info">
+                            <h3>Mr. Đặng Hoàng Vũ</h3>
+                            <p class="person-title">Celebrity Makeup Artist</p>
+                            <p class="person-org">VEFA Vietnam</p>
+                        </div>
+                    </div>
+                    <div class="person-card person-card-judge">
+                        <div class="person-image">
+                            <img src="images/judge-3.png" alt="Ms. Phạm Thanh Mai" loading="lazy">
+                            <div class="person-badge">Giám khảo</div>
+                        </div>
+                        <div class="person-info">
+                            <h3>Ms. Phạm Thanh Mai</h3>
+                            <p class="person-title">Chuyên gia Spa & Wellness</p>
+                            <p class="person-org">Golden Spa Group</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn carousel-btn-right" data-carousel="judgesCarousel"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== 7. TUYỂN THỦ ===================== -->
+    <section class="contestants" id="contestants">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge light">TUYỂN THỦ</span>
+                <h2 class="section-title light">Các <span class="gold-text">Tuyển Thủ</span> Tham Gia</h2>
+                <div class="section-divider">
+                    <span class="divider-line"></span>
+                    <span class="divider-icon"><i class="fas fa-users"></i></span>
+                    <span class="divider-line"></span>
+                </div>
+                <p class="section-desc light">Quy tụ những tuyển thủ xuất sắc nhất ngành làm đẹp trên toàn quốc</p>
+            </div>
+            <div class="carousel-wrapper">
+                <button class="carousel-btn carousel-btn-left" data-carousel="contestantsCarousel"><i class="fas fa-chevron-left"></i></button>
+                <div class="carousel-track" id="contestantsCarousel">
+                    <div class="contestant-card">
+                        <div class="contestant-image">
+                            <img src="images/contestant-1.png" alt="Trần Thị Minh Anh" loading="lazy">
+                            <div class="contestant-industry">Makeup</div>
+                        </div>
+                        <div class="contestant-info">
+                            <h3>Trần Thị Minh Anh</h3>
+                            <p class="contestant-specialty">Chuyên gia trang điểm cô dâu</p>
+                            <a href="#" class="contestant-link"><i class="fas fa-arrow-right"></i> Xem chi tiết</a>
+                        </div>
+                    </div>
+                    <div class="contestant-card">
+                        <div class="contestant-image">
+                            <img src="images/contestant-2.png" alt="Nguyễn Hồng Vân" loading="lazy">
+                            <div class="contestant-industry">Nail & Mi</div>
+                        </div>
+                        <div class="contestant-info">
+                            <h3>Nguyễn Hồng Vân</h3>
+                            <p class="contestant-specialty">Nail Art & Nối mi cao cấp</p>
+                            <a href="#" class="contestant-link"><i class="fas fa-arrow-right"></i> Xem chi tiết</a>
+                        </div>
+                    </div>
+                    <div class="contestant-card">
+                        <div class="contestant-image">
+                            <img src="images/contestant-3.png" alt="Lê Phương Linh" loading="lazy">
+                            <div class="contestant-industry">Tóc</div>
+                        </div>
+                        <div class="contestant-info">
+                            <h3>Lê Phương Linh</h3>
+                            <p class="contestant-specialty">Hair Stylist & Salon Owner</p>
+                            <a href="#" class="contestant-link"><i class="fas fa-arrow-right"></i> Xem chi tiết</a>
+                        </div>
+                    </div>
+                    <div class="contestant-card">
+                        <div class="contestant-image">
+                            <img src="images/contestant-4.png" alt="Phạm Ngọc Diệp" loading="lazy">
+                            <div class="contestant-industry">Phun xăm</div>
+                        </div>
+                        <div class="contestant-info">
+                            <h3>Phạm Ngọc Diệp</h3>
+                            <p class="contestant-specialty">Phun xăm thẩm mỹ quốc tế</p>
+                            <a href="#" class="contestant-link"><i class="fas fa-arrow-right"></i> Xem chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn carousel-btn-right" data-carousel="contestantsCarousel"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== 9. TRẢI NGHIỆM ===================== -->
+    <section class="experience" id="experience">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge light">TRẢI NGHIỆM</span>
+                <h2 class="section-title light">Trải Nghiệm <span class="gold-text">Đẳng Cấp</span></h2>
+                <div class="section-divider">
+                    <span class="divider-line"></span>
+                    <span class="divider-icon"><i class="fas fa-gem"></i></span>
+                    <span class="divider-line"></span>
+                </div>
+            </div>
+            <div class="experience-grid" id="experienceGrid">
+                <div class="experience-card">
+                    <div class="experience-img">
+                        <img src="images/gala.png" alt="Gala sang trọng" loading="lazy">
+                        <div class="experience-overlay">
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <h3>Gala Sang Trọng</h3>
+                    <p>Đêm tiệc đẳng cấp tại Thành phố Hạ Long</p>
+                </div>
+                <div class="experience-card">
+                    <div class="experience-img">
+                        <img src="images/networking.png" alt="Networking cấp cao" loading="lazy">
+                        <div class="experience-overlay">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                    </div>
+                    <h3>Networking Cấp Cao</h3>
+                    <p>Kết nối trực tiếp với các chuyên gia hàng đầu</p>
+                </div>
+                <div class="experience-card experience-card-text">
+                    <div class="experience-img">
+                        <img src="images/event-stage.png" alt="Lễ Vinh Danh" loading="lazy">
+                        <div class="experience-overlay">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                    </div>
+                    <h3>Lễ Vinh Danh</h3>
+                    <p>Tôn vinh những cá nhân & tổ chức xuất sắc nhất ngành</p>
+                </div>
+                <div class="experience-card experience-card-text">
+                    <div class="experience-img">
+                        <img src="images/spa-luxury.png" alt="Trải Nghiệm Công Nghệ" loading="lazy">
+                        <div class="experience-overlay">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                    </div>
+                    <h3>Trải Nghiệm Công Nghệ</h3>
+                    <p>Tiếp cận thiết bị & công nghệ làm đẹp mới nhất</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== 10. CTA - REGISTRATION ===================== -->
+    <section class="register" id="register">
+        <div class="container">
+            <div class="register-wrapper">
+                <div class="register-info">
+                    <div class="register-badge-wrap">
+                        <span class="urgency-badge pulse-badge" id="regUrgency">🔥 SỐ LƯỢNG GIỚI HẠN</span>
+                    </div>
+                    <h2 id="regTitle">Đăng Ký <span class="gold-text">Ngay Hôm Nay</span></h2>
+                    <p class="register-hook" id="regHook">Đừng bỏ lỡ cơ hội nâng tầm thương hiệu & sự nghiệp</p>
+                    
+                    <div class="register-highlights" id="regHighlights">
+                        <div class="highlight-item"><i class="fas fa-check-circle"></i><span>Chứng nhận từ Ban Tổ Chức</span></div>
+                        <div class="highlight-item"><i class="fas fa-check-circle"></i><span>Tài liệu chuyên môn độc quyền</span></div>
+                        <div class="highlight-item"><i class="fas fa-check-circle"></i><span>Networking với 200+ tuyển thủ & chuyên gia</span></div>
+                        <div class="highlight-item"><i class="fas fa-check-circle"></i><span>Cơ hội nhận giải thưởng & cúp vinh danh</span></div>
+                        <div class="highlight-item"><i class="fas fa-check-circle"></i><span>Quà tặng từ nhà tài trợ</span></div>
+                        <div class="highlight-item"><i class="fas fa-check-circle"></i><span>Tham dự Gala tại Hạ Long</span></div>
+                    </div>
+
+                    <div class="register-venue">
+                        <div class="venue-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <h4>Địa điểm & Thời gian</h4>
+                            <p id="regVenueText">📍 Thành phố Hạ Long &nbsp;|&nbsp; 🗓 19.05.2026</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="register-form-wrapper">
+                    <form class="register-form" id="registerForm">
+                        <h3>ĐĂNG KÝ THAM GIA</h3>
+                        <p class="form-subtitle">Điền thông tin để nhận ưu đãi đăng ký sớm</p>
+                        
+                        <div class="form-group">
+                            <label for="fullname"><i class="fas fa-user"></i> Họ và tên *</label>
+                            <input type="text" id="fullname" name="fullname" placeholder="Nhập họ và tên đầy đủ" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone"><i class="fas fa-phone"></i> Số điện thoại *</label>
+                            <input type="tel" id="phone" name="phone" placeholder="0xxx xxx xxx" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="industry"><i class="fas fa-briefcase"></i> Ngành nghề *</label>
+                            <select id="industry" name="industry" required>
+                                <option value="">-- Chọn ngành nghề --</option>
+                                <option value="spa">Spa & Chăm sóc da</option>
+                                <option value="phunxam">Phun xăm thẩm mỹ</option>
+                                <option value="makeup">Makeup</option>
+                                <option value="nail">Nail & Mi</option>
+                                <option value="toc">Tóc</option>
+                                <option value="fitness">Fitness & Wellness</option>
+                                <option value="mypham">Mỹ phẩm & TPCN</option>
+                                <option value="thietbi">Thiết bị thẩm mỹ</option>
+                                <option value="dao-tao">Đào tạo / Giảng dạy</option>
+                                <option value="other">Khác</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="role"><i class="fas fa-user-tag"></i> Vai trò *</label>
+                            <select id="role" name="role" required>
+                                <option value="">-- Chọn vai trò --</option>
+                                <option value="owner">Chủ cơ sở làm nghề</option>
+                                <option value="business">Chủ doanh nghiệp</option>
+                                <option value="expert">Chuyên gia / Giảng viên</option>
+                                <option value="technician">Kỹ thuật viên / Học viên</option>
+                                <option value="sponsor">Nhà tài trợ</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-gold btn-glow btn-full">
+                            <i class="fas fa-paper-plane"></i> ĐĂNG KÝ NGAY
+                        </button>
+                        <p class="form-note"><i class="fas fa-lock"></i> Thông tin được bảo mật tuyệt đối</p>
+                        <p class="form-seats"><i class="fas fa-fire"></i> Chỉ còn <strong>50 suất</strong> đăng ký sớm</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== CUSTOM SECTIONS (from Admin CMS) ===================== -->
+    <div id="customSectionsContainer" class="custom-sections-container"></div>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-col">
+                        <div class="footer-logo">
+                            <div class="logo-icon"><i class="fas fa-award"></i></div>
+                            <div>
+                                <span class="logo-main">TOP BEAUTY</span>
+                                <span class="logo-sub">& WELLNESS AWARDS</span>
+                            </div>
+                        </div>
+                        <p class="footer-desc" id="footerDesc">Hội Nghị Quốc Tế Ngành Làm Đẹp & Chăm Sóc Sức Khoẻ<br>Kết Nối Tinh Hoa — Nâng Tầm Vị Thế</p>
+                        <div class="footer-social" id="footerSocial">
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="Youtube"><i class="fab fa-youtube"></i></a>
+                            <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                            <a href="#" aria-label="Zalo"><i class="fas fa-comment-dots"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Liên Kết</h4>
+                        <ul>
+                            <li><a href="#about">Giới thiệu cuộc thi</a></li>
+                            <li><a href="#speakers">Diễn giả</a></li>
+                            <li><a href="#sponsors">Nhà tài trợ</a></li>
+                            <li><a href="#advisors">Ban cố vấn</a></li>
+                            <li><a href="#judges">Ban giám khảo</a></li>
+                            <li><a href="#contestants">Tuyển thủ</a></li>
+                            <li><a href="#register">Đăng ký</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Liên Hệ</h4>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Thành phố Hạ Long, Quảng Ninh</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span id="footerPhone">Hotline: <strong>0988.227.886</strong></span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-facebook"></i>
+                            <span>Hội Nghị Quốc Tế Ngành Làm Đẹp & Chăm Sóc Sức Khỏe</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p id="footerCopyright">&copy; 2026 Top Beauty & Wellness Awards. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===================== FLOATING CTA ===================== -->
+    <div class="floating-cta">
+        <a href="tel:0988227886" class="float-btn float-phone" aria-label="Gọi ngay">
+            <i class="fas fa-phone-alt"></i>
+        </a>
+        <a href="#register" class="float-btn float-register" aria-label="Đăng ký">
+            <i class="fas fa-pen"></i>
+        </a>
+    </div>
+
+    <!-- Back to top -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal-content">
+            <div class="modal-icon"><i class="fas fa-check-circle"></i></div>
+            <h3>Đăng Ký Thành Công!</h3>
+            <p>Cảm ơn bạn đã đăng ký tham gia<br><strong>Top Beauty & Wellness Awards 2026</strong><br>Chúng tôi sẽ liên hệ bạn sớm nhất!</p>
+            <button class="btn btn-gold" onclick="document.getElementById('successModal').classList.remove('active')">Đóng</button>
+        </div>
+    </div>
+
+    <!-- Exit Intent Popup -->
+    <div class="modal-overlay" id="exitPopup">
+        <div class="modal-content exit-popup-content">
+            <button class="exit-close" onclick="document.getElementById('exitPopup').classList.remove('active')">&times;</button>
+            <div class="exit-icon"><i class="fas fa-hand-paper"></i></div>
+            <h3 id="exitTitle">Khoan Đã!</h3>
+            <p id="exitText">Bạn sắp bỏ lỡ cơ hội <strong>nâng tầm sự nghiệp</strong> trong ngành làm đẹp!</p>
+            <div class="exit-urgency">
+                <i class="fas fa-fire"></i> <span id="exitUrgency">Chỉ còn <strong>50 suất</strong> đăng ký sớm</span>
+            </div>
+            <a href="#register" class="btn btn-gold btn-full" id="exitCtaBtn" onclick="document.getElementById('exitPopup').classList.remove('active')">
+                <i class="fas fa-ticket-alt"></i> <span id="exitCtaText">ĐĂNG KÝ NGAY — NHẬN ƯU ĐÃI</span>
+            </a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuyển Thủ — Top Beauty & Wellness Awards 2026</title>
+    <meta name="description" content="Thông tin chi tiết tuyển thủ tham gia Top Beauty & Wellness Awards 2026">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .contestant-page { min-height: 100vh; background: var(--off-white); padding-top: 80px; }
+        
+        /* Top bar */
+        .contestant-topbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(42,0,0,0.95); backdrop-filter: blur(20px);
+            padding: 12px 0; border-bottom: 1px solid rgba(255,215,0,0.2);
+        }
+        .topbar-inner {
+            max-width: 1140px; margin: 0 auto; padding: 0 20px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .topbar-back {
+            display: inline-flex; align-items: center; gap: 8px;
+            color: var(--gold-bright); font-size: 0.85rem; font-weight: 600;
+            padding: 8px 16px; border-radius: var(--radius-xl);
+            border: 1px solid rgba(255,215,0,0.3);
+            transition: var(--transition);
+        }
+        .topbar-back:hover { background: rgba(255,215,0,0.1); }
+        .topbar-title {
+            font-family: var(--font-display); font-size: 0.9rem;
+            color: var(--gold-pale); font-weight: 600;
+        }
+        .topbar-share {
+            display: inline-flex; align-items: center; gap: 8px;
+            color: var(--gold-bright); font-size: 0.85rem;
+            padding: 8px 16px; border-radius: var(--radius-xl);
+            background: rgba(255,215,0,0.1);
+            border: 1px solid rgba(255,215,0,0.25);
+            cursor: pointer; transition: var(--transition); border: none;
+            font-family: var(--font-body);
+        }
+        .topbar-share:hover { background: var(--gradient-gold); color: var(--red-darkest); }
+
+        /* Hero banner */
+        .contestant-hero {
+            position: relative; height: 350px;
+            background: var(--gradient-dark-red); overflow: hidden;
+        }
+        .contestant-hero-bg {
+            position: absolute; inset: 0;
+            background-size: cover; background-position: center;
+            opacity: 0.25;
+        }
+        .contestant-hero-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to bottom, rgba(26,0,0,0.3), rgba(26,0,0,0.9));
+        }
+
+        /* Profile card */
+        .contestant-profile {
+            max-width: 900px; margin: -120px auto 0; padding: 0 20px;
+            position: relative; z-index: 10;
+        }
+        .profile-card {
+            background: var(--white); border-radius: var(--radius-lg);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        .profile-header {
+            display: flex; gap: 30px; padding: 35px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        .profile-avatar {
+            width: 180px; height: 180px; min-width: 180px;
+            border-radius: var(--radius-lg); overflow: hidden;
+            border: 4px solid var(--gold-medium);
+            box-shadow: var(--shadow-gold);
+        }
+        .profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .profile-avatar-placeholder {
+            width: 100%; height: 100%;
+            background: var(--gradient-red);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 4rem; color: var(--gold-bright);
+        }
+        .profile-details { flex: 1; }
+        .profile-name {
+            font-family: var(--font-display); font-size: 2rem;
+            font-weight: 800; color: var(--gray-900); margin-bottom: 8px;
+        }
+        .profile-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px; }
+        .profile-tag {
+            display: inline-flex; align-items: center; gap: 5px;
+            padding: 5px 14px; border-radius: var(--radius-xl);
+            font-size: 0.75rem; font-weight: 600;
+        }
+        .tag-industry {
+            background: var(--gradient-gold); color: var(--red-darkest);
+        }
+        .tag-specialty {
+            background: rgba(200,16,46,0.08); color: var(--red-primary);
+            border: 1px solid rgba(200,16,46,0.15);
+        }
+        .profile-bio {
+            font-size: 0.95rem; color: var(--gray-700);
+            line-height: 1.8; margin-bottom: 15px;
+        }
+        .profile-social { display: flex; gap: 8px; }
+        .profile-social a {
+            width: 36px; height: 36px; border-radius: 50%;
+            background: var(--gray-100); border: 1px solid var(--gray-200);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--gold-dark); font-size: 0.85rem;
+            transition: var(--transition);
+        }
+        .profile-social a:hover { background: var(--gradient-gold); color: var(--red-darkest); }
+
+        /* Article content */
+        .profile-article {
+            padding: 35px;
+        }
+        .profile-article h2 {
+            font-family: var(--font-display); font-size: 1.5rem;
+            font-weight: 700; color: var(--gray-900); margin-bottom: 20px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .profile-article h2 i { color: var(--gold-dark); }
+        .article-content {
+            font-size: 0.95rem; color: var(--gray-700);
+            line-height: 1.9;
+        }
+        .article-content h1,
+        .article-content h2,
+        .article-content h3 {
+            font-family: var(--font-display);
+            color: var(--gray-900); margin: 25px 0 10px;
+        }
+        .article-content h1 { font-size: 1.6rem; }
+        .article-content h2 { font-size: 1.3rem; }
+        .article-content h3 { font-size: 1.1rem; }
+        .article-content p { margin-bottom: 15px; }
+        .article-content img {
+            max-width: 100%; border-radius: var(--radius-md);
+            margin: 15px 0;
+        }
+        .article-content ul, .article-content ol {
+            padding-left: 25px; margin-bottom: 15px;
+        }
+        .article-content li { margin-bottom: 5px; }
+        .article-content blockquote {
+            border-left: 4px solid var(--gold-medium);
+            padding: 15px 20px; margin: 15px 0;
+            background: var(--gray-100); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            font-style: italic; color: var(--gray-500);
+        }
+
+        /* Not found */
+        .not-found {
+            text-align: center; padding: 100px 20px;
+        }
+        .not-found i { font-size: 4rem; color: var(--gray-200); margin-bottom: 20px; }
+        .not-found h2 { font-family: var(--font-display); font-size: 1.8rem; color: var(--gray-900); margin-bottom: 10px; }
+        .not-found p { color: var(--gray-500); margin-bottom: 25px; }
+
+        /* CTA bottom */
+        .contestant-cta {
+            background: var(--gradient-red); padding: 60px 0; text-align: center;
+            margin-top: 60px;
+        }
+        .contestant-cta h3 {
+            font-family: var(--font-display); font-size: 1.6rem;
+            font-weight: 700; color: var(--gold-bright); margin-bottom: 10px;
+        }
+        .contestant-cta p { color: var(--gold-pale); margin-bottom: 20px; font-size: 1rem; }
+
+        @media (max-width: 768px) {
+            .profile-header { flex-direction: column; align-items: center; text-align: center; }
+            .profile-avatar { width: 140px; height: 140px; min-width: 140px; }
+            .profile-tags { justify-content: center; }
+            .profile-name { font-size: 1.5rem; }
+            .contestant-hero { height: 250px; }
+            .topbar-title { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="contestant-page">
+        <!-- Top bar -->
+        <div class="contestant-topbar">
+            <div class="topbar-inner">
+                <a href="index.html#contestants" class="topbar-back">
+                    <i class="fas fa-arrow-left"></i> Quay lại
+                </a>
+                <span class="topbar-title">Top Beauty & Wellness Awards 2026</span>
+                <button class="topbar-share" id="shareBtn">
+                    <i class="fas fa-share-alt"></i> Chia sẻ
+                </button>
+            </div>
+        </div>
+
+        <!-- Content will be loaded by JS -->
+        <div id="contestantContent">
+            <div class="not-found">
+                <i class="fas fa-spinner fa-spin"></i>
+                <h2>Đang tải...</h2>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="contestant-cta">
+            <div class="container">
+                <h3>Bạn cũng muốn tham gia?</h3>
+                <p>Đăng ký ngay để trở thành tuyển thủ Top Beauty Awards 2026</p>
+                <a href="index.html#register" class="btn btn-gold btn-glow btn-lg">
+                    <i class="fas fa-ticket-alt"></i> ĐĂNG KÝ NGAY
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id');
+            const container = document.getElementById('contestantContent');
+
+            if (!id) {
+                showNotFound(container);
+                return;
+            }
+
+            const contestants = JSON.parse(localStorage.getItem('beautyAwards_contestants') || '[]');
+            const contestant = contestants.find(c => c.id === id);
+
+            if (!contestant) {
+                showNotFound(container);
+                return;
+            }
+
+            document.title = `${contestant.name} — Top Beauty & Wellness Awards 2026`;
+
+            container.innerHTML = `
+                <div class="contestant-hero">
+                    <div class="contestant-hero-bg" style="${contestant.coverImage ? `background-image: url('${contestant.coverImage}')` : ''}"></div>
+                    <div class="contestant-hero-overlay"></div>
+                </div>
+                <div class="contestant-profile">
+                    <div class="profile-card">
+                        <div class="profile-header">
+                            <div class="profile-avatar">
+                                ${contestant.image 
+                                    ? `<img src="${contestant.image}" alt="${contestant.name}">`
+                                    : '<div class="profile-avatar-placeholder"><i class="fas fa-user"></i></div>'}
+                            </div>
+                            <div class="profile-details">
+                                <h1 class="profile-name">${contestant.name}</h1>
+                                <div class="profile-tags">
+                                    ${contestant.industry ? `<span class="profile-tag tag-industry"><i class="fas fa-tag"></i> ${contestant.industry}</span>` : ''}
+                                    ${contestant.specialty ? `<span class="profile-tag tag-specialty">${contestant.specialty}</span>` : ''}
+                                </div>
+                                <p class="profile-bio">${contestant.bio || 'Tuyển thủ tham gia Top Beauty & Wellness Awards 2026.'}</p>
+                                <div class="profile-social">
+                                    ${contestant.facebook ? `<a href="${contestant.facebook}" target="_blank"><i class="fab fa-facebook-f"></i></a>` : ''}
+                                    ${contestant.instagram ? `<a href="${contestant.instagram}" target="_blank"><i class="fab fa-instagram"></i></a>` : ''}
+                                    ${contestant.phone ? `<a href="tel:${contestant.phone}"><i class="fas fa-phone"></i></a>` : ''}
+                                </div>
+                            </div>
+                        </div>
+                        ${contestant.article ? `
+                            <div class="profile-article">
+                                <h2><i class="fas fa-newspaper"></i> Bài Giới Thiệu</h2>
+                                <div class="article-content">${contestant.article}</div>
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `;
+
+            // Share button
+            document.getElementById('shareBtn').addEventListener('click', () => {
+                const url = window.location.href;
+                if (navigator.share) {
+                    navigator.share({ title: contestant.name, text: `${contestant.name} - Top Beauty Awards 2026`, url });
+                } else {
+                    navigator.clipboard.writeText(url).then(() => {
+                        const btn = document.getElementById('shareBtn');
+                        btn.innerHTML = '<i class="fas fa-check"></i> Đã copy!';
+                        setTimeout(() => { btn.innerHTML = '<i class="fas fa-share-alt"></i> Chia sẻ'; }, 2000);
+                    });
+                }
+            });
+        });
+
+        function showNotFound(container) {
+            container.innerHTML = `
+                <div class="not-found">
+                    <i class="fas fa-user-slash"></i>
+                    <h2>Không tìm thấy tuyển thủ</h2>
+                    <p>Tuyển thủ này chưa được đăng ký hoặc link không hợp lệ.</p>
+                    <a href="index.html#contestants" class="btn btn-gold">
+                        <i class="fas fa-arrow-left"></i> Quay lại danh sách
+                    </a>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
