@@ -410,3 +410,92 @@ function saveCustomSection(i) {
     showToast('Đã lưu Custom Section!','success');
     renderCustomSections(document.getElementById('contentArea'));
 }
+
+function genId() { return 'id_' + Date.now() + '_' + Math.random().toString(36).substr(2,6); }
+
+/* ========== BANNER EDITOR ========== */
+function renderBannerEditor(c) {
+    const d = getData(KEYS.banners) || {};
+    c.innerHTML = _card('Ảnh nền Sections', 'fas fa-image', `
+        <p style="color:var(--admin-text-muted);font-size:0.85rem;margin-bottom:16px;">Thay đổi ảnh nền cho các section.</p>
+        ${_field('Hero Background URL','bn_hero',d.hero,'text','images/hero-bg.png')}
+        <div id="heroPreview" style="margin-bottom:16px;">${d.hero ? `<img src="${d.hero}" style="max-width:300px;border-radius:8px;">` : ''}</div>
+        <button class="btn-admin btn-secondary" onclick="openImageModal(url=>{document.getElementById('bn_hero').value=url;document.getElementById('heroPreview').innerHTML='<img src=\\''+url+'\\' style=\\'max-width:300px;border-radius:8px;\\'>';},'Chọn ảnh Hero')">
+            <i class="fas fa-upload"></i> Upload ảnh Hero
+        </button>
+        ${_saveBtn('saveBanners()')}
+    `);
+}
+function saveBanners() {
+    setData(KEYS.banners, { hero: document.getElementById('bn_hero').value.trim() });
+    showToast('Đã lưu Banner!','success');
+}
+
+/* ========== GENERIC PEOPLE EDITOR ========== */
+function renderPeopleEditor(key, title, icon) {
+    return function(c) {
+        const people = getData(key) || [];
+        const fields = key === 'sponsors'
+            ? ['name','tier','image']
+            : key === 'speakers'
+            ? ['name','role','title','desc','image']
+            : key === 'contestants'
+            ? ['name','industry','specialty','image']
+            : ['name','title','org','image'];
+
+        const fieldLabels = {
+            name:'Họ tên', role:'Vai trò', title:'Chức danh', desc:'Mô tả',
+            org:'Tổ chức', tier:'Hạng tài trợ', industry:'Ngành', specialty:'Chuyên môn',
+            image:'Ảnh (URL)'
+        };
+
+        c.innerHTML = _card(title, icon, `
+            <p style="color:var(--admin-text-muted);font-size:0.85rem;margin-bottom:16px;">Quản lý danh sách ${title.toLowerCase()}.</p>
+            <div id="peopleList">${people.length === 0 ? '<div class="empty-state"><i class="fas fa-users"></i><p>Chưa có dữ liệu</p></div>' :
+                people.map((p,i) => `
+                <div class="admin-card" style="margin-bottom:12px;border-color:rgba(212,160,23,0.15);padding:14px;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                        <span style="color:var(--admin-primary);font-weight:600;">#${i+1} ${p.name||''}</span>
+                        <button class="btn-admin btn-danger btn-sm btn-icon" onclick="removePerson('${key}',${i})"><i class="fas fa-trash"></i></button>
+                    </div>
+                    ${p.image ? `<img src="${p.image}" style="width:60px;height:60px;border-radius:50%;object-fit:cover;margin-bottom:8px;">` : ''}
+                    ${fields.map(f => f === 'image'
+                        ? `<div class="form-group"><label class="form-label">${fieldLabels[f]}</label><div style="display:flex;gap:8px;"><input class="admin-input" id="pp_${f}_${i}" value="${escH(p[f]||'')}" style="flex:1;"><button class="btn-admin btn-secondary btn-sm" onclick="openImageModal(url=>{document.getElementById('pp_${f}_${i}').value=url;},'Chọn ảnh')"><i class="fas fa-upload"></i></button></div></div>`
+                        : _field(fieldLabels[f]||f, 'pp_'+f+'_'+i, p[f])
+                    ).join('')}
+                </div>`).join('')}
+            </div>
+            <button class="btn-admin btn-secondary" onclick="addPerson('${key}')" style="margin-top:8px;"><i class="fas fa-plus"></i> Thêm ${title}</button>
+            ${_saveBtn("savePeople('"+key+"',["+fields.map(f=>"'"+f+"'").join(',')+"])")}
+        `);
+    };
+}
+
+function addPerson(key) {
+    const people = getData(key) || [];
+    people.push({id:genId(), name:'Mới'});
+    setData(key, people);
+    loadSection(key);
+}
+
+function removePerson(key, i) {
+    if (!confirm('Xóa người này?')) return;
+    const people = getData(key) || [];
+    people.splice(i,1);
+    setData(key, people);
+    loadSection(key);
+}
+
+function savePeople(key, fields) {
+    const people = getData(key) || [];
+    const saved = [];
+    for (let i=0; i<people.length; i++) {
+        const el = document.getElementById('pp_name_'+i);
+        if (!el) break;
+        const obj = {id: people[i].id || genId()};
+        fields.forEach(f => { const e = document.getElementById('pp_'+f+'_'+i); if(e) obj[f] = e.value.trim(); });
+        saved.push(obj);
+    }
+    setData(key, saved);
+    showToast('Đã lưu!','success');
+}

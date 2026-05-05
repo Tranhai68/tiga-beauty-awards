@@ -288,12 +288,15 @@ function loadSection(name) {
     const renderers = {
         hero: renderHeroEditor, seo: renderSeoEditor, navigation: renderNavEditor,
         banners: renderBannerEditor, stats: renderStatsEditor, about: renderAboutEditor,
-        speakers: renderSpeakersEditor, sponsors: renderSponsorsEditor,
-        advisors: renderAdvisorsEditor, judges: renderJudgesEditor,
-        contestants: renderContestantsEditor, experience: renderExperienceEditor,
-        registration: renderRegistrationEditor, stickyCta: renderStickyCtaEditor,
-        exitPopup: renderExitPopupEditor, footer: renderFooterEditor,
-        customSections: renderCustomSectionsEditor, github: showGitHubSetup
+        speakers: renderPeopleEditor('speakers','Diễn giả','fas fa-microphone-alt','speaker-badge-role'),
+        sponsors: renderPeopleEditor('sponsors','Nhà tài trợ','fas fa-handshake','tier'),
+        advisors: renderPeopleEditor('advisors','Ban cố vấn','fas fa-user-shield','person-badge'),
+        judges: renderPeopleEditor('judges','Ban giám khảo','fas fa-gavel','person-badge'),
+        contestants: renderPeopleEditor('contestants','Tuyển thủ','fas fa-users','contestant-industry'),
+        experience: renderExperienceEditor, registration: renderRegistrationEditor,
+        stickyCta: renderStickyCtaEditor, exitPopup: renderExitPopupEditor,
+        footer: renderFooterEditor, customSections: renderCustomSections,
+        github: showGitHubSetup
     };
 
     if (renderers[name]) {
