@@ -37,23 +37,22 @@
     ]
   },
   "about": {
-    "title": "Về Chương Trình",
-    "description": "Top Beauty & Wellness Awards 2026 là sự kiện vinh danh những cá nhân và thương hiệu xuất sắc nhất trong ngành Làm Đẹp & Chăm Sóc Sức Khoẻ tại Việt Nam.",
+    "lead": "",
     "features": [
       {
         "icon": "fas fa-gem",
-        "title": "Tiêu chuẩn quốc tế",
-        "desc": "Quy trình đánh giá & giám khảo theo chuẩn quốc tế"
+        "title": "Cập nhật xu hướng:",
+        "desc": "Nâng cấp kiến thức, công nghệ ứng dụng trong trẻ hóa da và phục hồi cơ xương khớp, dược chia sẻ bởi các chuyên gia từ Hàn Quốc, Trung Quốc"
       },
       {
         "icon": "fas fa-globe-asia",
-        "title": "Kết nối toàn cầu",
-        "desc": "Cầu nối giữa doanh nghiệp Việt Nam với thị trường quốc tế"
+        "title": "Nâng cấp tay nghề kỹ thuật",
+        "desc": "Được đánh giá, nâng cấp tay nghề bởi đội ngũ cố vấn chuyên môn là các Y Bác Sĩ, Chuyên Gia cùng đội ngũ giảng viên của Trường TC Quốc Tế Phoenix."
       },
       {
         "icon": "fas fa-star",
         "title": "Nâng tầm thương hiệu",
-        "desc": "Vinh danh và PR đa kênh cho người đạt giải"
+        "desc": "Nhận giải thưởng danh giá từ Ban Tổ Chức và nhà tài trợ tùy theo năng lực của bạn."
       }
     ]
   },
