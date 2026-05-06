@@ -220,5 +220,10 @@
       "image": "https://raw.githubusercontent.com/Tranhai68/tiga-beauty-awards/master/images/1778030232803_HIN.png"
     }
   ],
-  "contestants": []
+  "contestants": [
+    {
+      "id": "id_1778030253325_23whl9",
+      "name": "Mới"
+    }
+  ]
 }
