@@ -269,5 +269,11 @@
     "text": "Cuộc Thi Tay Nghề - Top Beauty & Wellness Awards 2026 — 19.05.2026",
     "btnText": "NHẬN ƯU ĐÃI NGAY",
     "btnLink": ""
+  },
+  "exitPopup": {
+    "title": "Nhận ưu đãi ngay",
+    "text": "Điền thông tin nhận ưu đãi xong bạn có thể thoát ra tìm hiểu tiếp",
+    "urgency": "Chỉ còn 30 mã ưu đãi đặc biệt tại đây",
+    "ctaText": "ĐĂNG KÝ NGAY - QUÀ LIỀN TAY"
   }
 }
