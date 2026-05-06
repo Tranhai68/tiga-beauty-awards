@@ -632,7 +632,6 @@ function loadContestants() {
         <div class="contestant-card">
             <div class="contestant-image">
                 ${c.image ? `<img src="${c.image}" alt="${c.name}">` : '<div class="person-placeholder"><i class="fas fa-user"></i></div>'}
-                <div class="contestant-industry">${c.industry || ''}</div>
             </div>
             <div class="contestant-info">
                 <h3>${c.name}</h3>

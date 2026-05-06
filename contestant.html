@@ -99,9 +99,6 @@
             padding: 5px 14px; border-radius: var(--radius-xl);
             font-size: 0.75rem; font-weight: 600;
         }
-        .tag-industry {
-            background: var(--gradient-gold); color: var(--red-darkest);
-        }
         .tag-specialty {
             background: rgba(200,16,46,0.08); color: var(--red-primary);
             border: 1px solid rgba(200,16,46,0.15);
@@ -146,7 +143,7 @@
         .article-content p { margin-bottom: 15px; }
         .article-content img {
             max-width: 100%; border-radius: var(--radius-md);
-            margin: 15px 0;
+            margin: 15px 0; box-shadow: var(--shadow-sm);
         }
         .article-content ul, .article-content ol {
             padding-left: 25px; margin-bottom: 15px;
@@ -158,6 +155,42 @@
             background: var(--gray-100); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
             font-style: italic; color: var(--gray-500);
         }
+
+        /* Article placeholder when no article written yet */
+        .article-empty {
+            text-align: center; padding: 40px 30px;
+            background: var(--gray-100); border-radius: var(--radius-md);
+            margin: 0 35px 35px;
+        }
+        .article-empty i {
+            font-size: 2.5rem; color: var(--gray-200); margin-bottom: 12px;
+        }
+        .article-empty h3 {
+            font-family: var(--font-display); font-size: 1.1rem;
+            color: var(--gray-700); margin-bottom: 6px;
+        }
+        .article-empty p { color: var(--gray-500); font-size: 0.85rem; }
+
+        /* Gallery section */
+        .profile-gallery {
+            padding: 0 35px 35px;
+        }
+        .profile-gallery h2 {
+            font-family: var(--font-display); font-size: 1.3rem;
+            font-weight: 700; color: var(--gray-900); margin-bottom: 18px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .profile-gallery h2 i { color: var(--gold-dark); }
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+        }
+        .gallery-grid img {
+            width: 100%; height: 200px; object-fit: cover;
+            border-radius: var(--radius-md); cursor: pointer;
+            transition: var(--transition);
+        }
+        .gallery-grid img:hover { transform: scale(1.03); box-shadow: var(--shadow-md); }
 
         /* Not found */
         .not-found {
@@ -185,6 +218,7 @@
             .profile-name { font-size: 1.5rem; }
             .contestant-hero { height: 250px; }
             .topbar-title { display: none; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -234,47 +268,77 @@
                 return;
             }
 
-            const contestants = JSON.parse(localStorage.getItem('beautyAwards_contestants') || '[]');
-            const contestant = contestants.find(c => c.id === id);
+            // Load from data.json
+            fetch('data.json?' + Date.now())
+                .then(r => r.json())
+                .then(data => {
+                    const contestants = data.contestants || [];
+                    const contestant = contestants.find(c => c.id === id);
 
-            if (!contestant) {
-                showNotFound(container);
-                return;
-            }
+                    if (!contestant) {
+                        showNotFound(container);
+                        return;
+                    }
 
-            document.title = `${contestant.name} — Top Beauty & Wellness Awards 2026`;
+                    renderContestant(container, contestant);
+                })
+                .catch(() => {
+                    showNotFound(container);
+                });
+        });
+
+        function renderContestant(container, c) {
+            document.title = `${c.name} — Top Beauty & Wellness Awards 2026`;
+
+            // Update meta description
+            const metaDesc = document.querySelector('meta[name="description"]');
+            if (metaDesc) metaDesc.content = `${c.name} - ${c.specialty || 'Tuyển thủ'} tại Top Beauty & Wellness Awards 2026`;
 
             container.innerHTML = `
                 <div class="contestant-hero">
-                    <div class="contestant-hero-bg" style="${contestant.coverImage ? `background-image: url('${contestant.coverImage}')` : ''}"></div>
+                    <div class="contestant-hero-bg" style="${c.coverImage ? `background-image: url('${c.coverImage}')` : (c.image ? `background-image: url('${c.image}')` : '')}"></div>
                     <div class="contestant-hero-overlay"></div>
                 </div>
                 <div class="contestant-profile">
                     <div class="profile-card">
                         <div class="profile-header">
                             <div class="profile-avatar">
-                                ${contestant.image 
-                                    ? `<img src="${contestant.image}" alt="${contestant.name}">`
+                                ${c.image 
+                                    ? `<img src="${c.image}" alt="${c.name}">`
                                     : '<div class="profile-avatar-placeholder"><i class="fas fa-user"></i></div>'}
                             </div>
                             <div class="profile-details">
-                                <h1 class="profile-name">${contestant.name}</h1>
+                                <h1 class="profile-name">${c.name}</h1>
                                 <div class="profile-tags">
-                                    ${contestant.industry ? `<span class="profile-tag tag-industry"><i class="fas fa-tag"></i> ${contestant.industry}</span>` : ''}
-                                    ${contestant.specialty ? `<span class="profile-tag tag-specialty">${contestant.specialty}</span>` : ''}
+                                    ${c.specialty ? `<span class="profile-tag tag-specialty"><i class="fas fa-gem"></i> ${c.specialty}</span>` : ''}
                                 </div>
-                                <p class="profile-bio">${contestant.bio || 'Tuyển thủ tham gia Top Beauty & Wellness Awards 2026.'}</p>
+                                <p class="profile-bio">${c.bio || 'Tuyển thủ tham gia Top Beauty & Wellness Awards 2026.'}</p>
                                 <div class="profile-social">
-                                    ${contestant.facebook ? `<a href="${contestant.facebook}" target="_blank"><i class="fab fa-facebook-f"></i></a>` : ''}
-                                    ${contestant.instagram ? `<a href="${contestant.instagram}" target="_blank"><i class="fab fa-instagram"></i></a>` : ''}
-                                    ${contestant.phone ? `<a href="tel:${contestant.phone}"><i class="fas fa-phone"></i></a>` : ''}
+                                    ${c.facebook ? `<a href="${c.facebook}" target="_blank"><i class="fab fa-facebook-f"></i></a>` : ''}
+                                    ${c.instagram ? `<a href="${c.instagram}" target="_blank"><i class="fab fa-instagram"></i></a>` : ''}
+                                    ${c.phone ? `<a href="tel:${c.phone}"><i class="fas fa-phone"></i></a>` : ''}
+                                    ${c.zalo ? `<a href="https://zalo.me/${c.zalo}" target="_blank"><i class="fas fa-comment-dots"></i></a>` : ''}
                                 </div>
                             </div>
                         </div>
-                        ${contestant.article ? `
+                        ${c.article ? `
                             <div class="profile-article">
                                 <h2><i class="fas fa-newspaper"></i> Bài Giới Thiệu</h2>
-                                <div class="article-content">${contestant.article}</div>
+                                <div class="article-content">${c.article}</div>
+                            </div>
+                        ` : `
+                            <div class="article-empty">
+                                <i class="fas fa-file-alt"></i>
+                                <h3>Bài viết đang được cập nhật</h3>
+                                <p>Thông tin chi tiết về tuyển thủ sẽ sớm được đăng tải</p>
+                            </div>
+                        `}
+                        ${c.gallery && c.gallery.length ? `
+                            <div class="profile-gallery">
+                                <h2><i class="fas fa-images"></i> Hình Ảnh</h2>
+                                <div class="gallery-grid">
+                                    ${c.gallery.map(img => `<img src="${img}" alt="${c.name}" loading="lazy">`).join('')}
+                                </div>
                             </div>
                         ` : ''}
                     </div>
@@ -285,7 +349,7 @@
             document.getElementById('shareBtn').addEventListener('click', () => {
                 const url = window.location.href;
                 if (navigator.share) {
-                    navigator.share({ title: contestant.name, text: `${contestant.name} - Top Beauty Awards 2026`, url });
+                    navigator.share({ title: c.name, text: `${c.name} - Top Beauty Awards 2026`, url });
                 } else {
                     navigator.clipboard.writeText(url).then(() => {
                         const btn = document.getElementById('shareBtn');
@@ -294,7 +358,7 @@
                     });
                 }
             });
-        });
+        }
 
         function showNotFound(container) {
             container.innerHTML = `

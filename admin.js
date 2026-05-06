@@ -292,7 +292,7 @@ function loadSection(name) {
         sponsors: renderPeopleEditor('sponsors','Nhà tài trợ','fas fa-handshake','tier'),
         advisors: renderPeopleEditor('advisors','Ban cố vấn','fas fa-user-shield','person-badge'),
         judges: renderPeopleEditor('judges','Ban giám khảo','fas fa-gavel','person-badge'),
-        contestants: renderPeopleEditor('contestants','Tuyển thủ','fas fa-users','contestant-industry'),
+        contestants: renderPeopleEditor('contestants','Tuyển thủ','fas fa-users'),
         experience: renderExperienceEditor, registration: renderRegistrationEditor,
         stickyCta: renderStickyCtaEditor, exitPopup: renderExitPopupEditor,
         footer: renderFooterEditor, customSections: renderCustomSections,

@@ -440,13 +440,14 @@ function renderPeopleEditor(key, title, icon) {
             : key === 'speakers'
             ? ['name','role','title','desc','image']
             : key === 'contestants'
-            ? ['name','industry','specialty','image']
+            ? ['name','specialty','bio','image','facebook','instagram','phone','article']
             : ['name','title','org','image'];
 
         const fieldLabels = {
             name:'Họ tên', role:'Vai trò', title:'Chức danh', desc:'Mô tả',
-            org:'Tổ chức', tier:'Hạng tài trợ', industry:'Ngành', specialty:'Chuyên môn',
-            image:'Ảnh (URL)'
+            org:'Tổ chức', tier:'Hạng tài trợ', specialty:'Chuyên môn',
+            image:'Ảnh (URL)', bio:'Tiểu sử ngắn', article:'Bài viết chi tiết (HTML)',
+            facebook:'Facebook URL', instagram:'Instagram URL', phone:'Số điện thoại'
         };
 
         c.innerHTML = _card(title, icon, `
@@ -456,11 +457,18 @@ function renderPeopleEditor(key, title, icon) {
                 <div class="admin-card" style="margin-bottom:12px;border-color:rgba(212,160,23,0.15);padding:14px;">
                     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
                         <span style="color:var(--admin-primary);font-weight:600;">#${i+1} ${p.name||''}</span>
-                        <button class="btn-admin btn-danger btn-sm btn-icon" onclick="removePerson('${key}',${i})"><i class="fas fa-trash"></i></button>
+                        <div style="display:flex;gap:6px;">
+                            ${key === 'contestants' && p.id ? `<a href="contestant.html?id=${p.id}" target="_blank" class="btn-admin btn-secondary btn-sm btn-icon" title="Xem trang"><i class="fas fa-external-link-alt"></i></a>` : ''}
+                            <button class="btn-admin btn-danger btn-sm btn-icon" onclick="removePerson('${key}',${i})"><i class="fas fa-trash"></i></button>
+                        </div>
                     </div>
                     ${p.image ? `<img src="${p.image}" style="width:60px;height:60px;border-radius:50%;object-fit:cover;margin-bottom:8px;">` : ''}
                     ${fields.map(f => f === 'image'
                         ? `<div class="form-group"><label class="form-label">${fieldLabels[f]}</label><div style="display:flex;gap:8px;"><input class="admin-input" id="pp_${f}_${i}" value="${escH(p[f]||'')}" style="flex:1;"><button class="btn-admin btn-secondary btn-sm" onclick="openImageModal(url=>{document.getElementById('pp_${f}_${i}').value=url;},'Chọn ảnh')"><i class="fas fa-upload"></i></button></div></div>`
+                        : f === 'article'
+                        ? `<div class="form-group"><label class="form-label">${fieldLabels[f]} <small style="color:var(--admin-text-muted);">(Hỗ trợ HTML: &lt;h2&gt;, &lt;p&gt;, &lt;img&gt;, &lt;ul&gt;...)</small></label><textarea class="admin-textarea" id="pp_${f}_${i}" style="min-height:200px;" placeholder="Viết bài giới thiệu tuyển thủ...">${p[f]||''}</textarea></div>`
+                        : f === 'bio'
+                        ? `<div class="form-group"><label class="form-label">${fieldLabels[f]}</label><textarea class="admin-textarea" id="pp_${f}_${i}" placeholder="Giới thiệu ngắn về tuyển thủ...">${p[f]||''}</textarea></div>`
                         : _field(fieldLabels[f]||f, 'pp_'+f+'_'+i, p[f])
                     ).join('')}
                 </div>`).join('')}
@@ -493,7 +501,13 @@ function savePeople(key, fields) {
         const el = document.getElementById('pp_name_'+i);
         if (!el) break;
         const obj = {id: people[i].id || genId()};
-        fields.forEach(f => { const e = document.getElementById('pp_'+f+'_'+i); if(e) obj[f] = e.value.trim(); });
+        fields.forEach(f => {
+            const e = document.getElementById('pp_'+f+'_'+i);
+            if(e) obj[f] = e.value.trim();
+        });
+        // Preserve coverImage and gallery if they exist
+        if (people[i].coverImage) obj.coverImage = people[i].coverImage;
+        if (people[i].gallery) obj.gallery = people[i].gallery;
         saved.push(obj);
     }
     setData(key, saved);
