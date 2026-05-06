@@ -98,7 +98,12 @@
       "image": "https://raw.githubusercontent.com/Tranhai68/tiga-beauty-awards/master/images/1778025720159_HUYN.jpg"
     }
   ],
-  "sponsors": [],
+  "sponsors": [
+    {
+      "id": "id_1778025847749_ibedm6",
+      "name": "Mới"
+    }
+  ],
   "advisors": [],
   "judges": [],
   "contestants": []
