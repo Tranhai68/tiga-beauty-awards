@@ -228,5 +228,33 @@
       "specialty": "Founder Tuệ Tâm Spa",
       "image": "https://raw.githubusercontent.com/Tranhai68/tiga-beauty-awards/master/images/1778030306509_chu.jpg"
     }
-  ]
+  ],
+  "experience": {
+    "cards": [
+      {
+        "icon": "fas fa-star",
+        "title": "Khẳng định tay nghề",
+        "desc": "Tham gia cuộc thi tay nghề chuyên nghiệp dưới sự bảo chứng từ Trường Quốc Tế Phoenix và các Y Bác Sĩ",
+        "image": "images/gala.png"
+      },
+      {
+        "icon": "fas fa-handshake",
+        "title": "Cập nhật xu hướng",
+        "desc": "Học tập từ các bác sĩ - chuyên gia hàng đầu trong nước và trên thế giới",
+        "image": "images/networking.png"
+      },
+      {
+        "icon": "fas fa-trophy",
+        "title": "Mở rộng mối quan hệ",
+        "desc": "Kết giao cùng hơn 200 tuyển thủ ngành Spa, Dưỡng sinh, Nail, Makeup trên toàn quốc",
+        "image": "images/event-stage.png"
+      },
+      {
+        "icon": "fas fa-microchip",
+        "title": "Nâng tầm thương hiệu",
+        "desc": "Đêm tiệc đẳng cấp tại Thành phố Hạ Long và được vinh danh tại đấu trường chuyên nghiệp",
+        "image": "images/spa-luxury.png"
+      }
+    ]
+  }
 }
