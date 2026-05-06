@@ -118,7 +118,12 @@
       "image": "https://raw.githubusercontent.com/Tranhai68/tiga-beauty-awards/master/images/1778026991844_logo.png"
     }
   ],
-  "advisors": [],
+  "advisors": [
+    {
+      "id": "id_1778027156091_uysgqu",
+      "name": "Mới"
+    }
+  ],
   "judges": [],
   "contestants": []
 }
