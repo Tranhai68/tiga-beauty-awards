@@ -775,12 +775,7 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
 }
 .contestant-card:hover .contestant-image img { transform: scale(1.08); }
 .contestant-industry {
-    position: absolute; bottom: 12px; left: 12px;
-    background: var(--gradient-gold);
-    color: var(--red-darkest);
-    padding: 5px 14px; border-radius: var(--radius-xl);
-    font-size: 0.65rem; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 1px;
+    display: none; /* Removed — no longer used */
 }
 .contestant-info { padding: 20px; }
 .contestant-info h3 {
