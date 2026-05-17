@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!githubConfig) {
         showGitHubSetup();
     } else {
-        loadDataFromGitHub();
+        validateAndLoadData();
     }
 });
 
@@ -111,15 +111,16 @@ function saveGitHubConfig() {
     githubConfig = { owner, repo, token, branch };
     localStorage.setItem(GITHUB_CONFIG_KEY, JSON.stringify(githubConfig));
     showToast('Đã lưu cấu hình GitHub!', 'success');
-    loadDataFromGitHub();
+    validateAndLoadData();
 }
 
 // === GITHUB API ===
+// Authenticated API call (for write operations)
 async function githubAPI(method, path, body) {
     const url = `https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/contents/${path}`;
     const opts = {
         method, headers: {
-            'Authorization': `Bearer ${githubConfig.token}`,
+            'Authorization': `token ${githubConfig.token}`,
             'Accept': 'application/vnd.github.v3+json',
             'Content-Type': 'application/json'
         }
@@ -132,33 +133,77 @@ async function githubAPI(method, path, body) {
     return fetch(url, opts);
 }
 
+// Validate token before loading data
+async function validateAndLoadData() {
+    updateStatus('Đang xác thực...', 'loading');
+    try {
+        // Test token validity with a simple API call
+        const testRes = await fetch('https://api.github.com/user', {
+            headers: { 'Authorization': `token ${githubConfig.token}` }
+        });
+        
+        if (testRes.status === 401) {
+            updateStatus('Token hết hạn!', 'error');
+            showToast('⚠️ PAT Token hết hạn hoặc sai! Vui lòng tạo token mới tại github.com/settings/tokens', 'error');
+            showGitHubSetup();
+            return;
+        }
+        
+        if (!testRes.ok) {
+            throw new Error(`Token check failed: HTTP ${testRes.status}`);
+        }
+        
+        const user = await testRes.json();
+        console.log('[Admin CMS] Authenticated as:', user.login);
+        
+        // Token is valid, now load data
+        await loadDataFromGitHub();
+    } catch (err) {
+        updateStatus('Lỗi xác thực', 'error');
+        showToast('Lỗi xác thực GitHub: ' + err.message, 'error');
+        console.error('[Admin CMS] Auth error:', err);
+        showGitHubSetup();
+    }
+}
+
 async function loadDataFromGitHub() {
     updateStatus('Đang tải...', 'loading');
     try {
-        const res = await githubAPI('GET', DATA_FILE);
-        if (res.ok) {
-            const json = await res.json();
-            fileSha = json.sha;
-            const content = atob(json.content.replace(/\n/g, ''));
-            // Decode UTF-8 properly
-            const bytes = new Uint8Array([...content].map(c => c.charCodeAt(0)));
-            const decoded = new TextDecoder('utf-8').decode(bytes);
-            siteData = JSON.parse(decoded);
+        // Use public raw URL to load data (no token needed, works even if token expired)
+        const rawUrl = `https://raw.githubusercontent.com/${githubConfig.owner}/${githubConfig.repo}/${githubConfig.branch}/${DATA_FILE}?t=${Date.now()}`;
+        const rawRes = await fetch(rawUrl);
+        
+        if (rawRes.ok) {
+            const text = await rawRes.text();
+            siteData = JSON.parse(text);
+            
+            // Get SHA for future saves (needs auth)
+            try {
+                const shaRes = await githubAPI('GET', DATA_FILE);
+                if (shaRes.ok) {
+                    const shaJson = await shaRes.json();
+                    fileSha = shaJson.sha;
+                }
+            } catch(e) {
+                console.warn('[Admin CMS] Could not get SHA, will fetch on save:', e);
+            }
+            
             updateStatus('GitHub ✓', 'connected');
             showToast('Đã tải dữ liệu từ GitHub!', 'success');
             loadSection('hero');
-        } else if (res.status === 404) {
+        } else if (rawRes.status === 404) {
             // data.json doesn't exist yet, create it
             siteData = {};
             await saveDataToGitHub('Khởi tạo data.json');
             updateStatus('GitHub ✓', 'connected');
             loadSection('hero');
         } else {
-            throw new Error(`HTTP ${res.status}`);
+            throw new Error(`HTTP ${rawRes.status}`);
         }
     } catch (err) {
         updateStatus('Lỗi kết nối', 'error');
         showToast('Lỗi kết nối GitHub: ' + err.message, 'error');
+        console.error('[Admin CMS] Load error:', err);
         showGitHubSetup();
     }
 }
@@ -177,6 +222,19 @@ function uint8ToBase64(bytes) {
 async function _doSaveToGitHub(message) {
     updateStatus('Đang lưu...', 'saving');
     try {
+        // If we don't have SHA yet, fetch it first
+        if (!fileSha) {
+            try {
+                const shaRes = await githubAPI('GET', DATA_FILE);
+                if (shaRes.ok) {
+                    const shaJson = await shaRes.json();
+                    fileSha = shaJson.sha;
+                }
+            } catch(e) {
+                console.warn('[Admin CMS] Could not get SHA:', e);
+            }
+        }
+
         const jsonStr = JSON.stringify(siteData, null, 2);
         // Encode UTF-8 properly using chunked approach (no stack overflow)
         const encoder = new TextEncoder();
@@ -216,6 +274,8 @@ async function _doSaveToGitHub(message) {
                 }
             }
             throw new Error('SHA conflict — vui lòng thử lại');
+        } else if (res.status === 401) {
+            throw new Error('Token hết hạn! Vào GitHub Config → tạo token mới');
         } else {
             const err = await res.json();
             throw new Error(err.message || `HTTP ${res.status}`);
