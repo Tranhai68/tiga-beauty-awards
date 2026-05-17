@@ -1,7 +1,7 @@
 {
   "hero": {
     "badge": "SỰ KIỆN ĐÁNG THAM DỰ NHẤT 2026",
-    "subtitle": "CUỘC THI TAY NGHỀ CHUYÊN NGHIỆP",
+    "subtitle": "HỘI NGHỊ QUỐC TẾ = GIAO LƯU TAY NGHỀ NGÀNH LÀM ĐẸP",
     "slogan": "KẾT NỐI TINH HOA — NÂNG TẦM VỊ THẾ",
     "location": "Thành phố Hạ Long",
     "date": "19.05.2026",
@@ -10,7 +10,11 @@
   },
   "seo": {
     "title": "Top Beauty & Wellness Awards 2026 — Kết Nối Tinh Hoa, Nâng Tầm Vị Thế",
-    "description": "Hội Nghị Quốc Tế Ngành Làm Đẹp & Chăm Sóc Sức Khoẻ lớn nhất 2026 tại Hạ Long."
+    "description": "Hội Nghị Quốc Tế Ngành Làm Đẹp & Chăm Sóc Sức Khoẻ lớn nhất 2026 tại Hạ Long.",
+    "ogTitle": "",
+    "ogDesc": "",
+    "ogImage": "",
+    "keywords": ""
   },
   "stats": {
     "items": [
