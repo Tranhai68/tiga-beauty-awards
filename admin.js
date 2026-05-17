@@ -88,7 +88,7 @@ function showGitHubSetup() {
         </div>
         <div class="form-group">
             <label class="form-label">Branch (mặc định: main)</label>
-            <input class="admin-input" id="gh_branch" placeholder="main" value="${githubConfig?.branch || 'main'}">
+            <input class="admin-input" id="gh_branch" placeholder="main" value="${githubConfig?.branch || 'master'}">
         </div>
         <button class="btn-admin btn-primary" onclick="saveGitHubConfig()">
             <i class="fab fa-github"></i> Kết nối & Tải dữ liệu
@@ -101,7 +101,7 @@ function saveGitHubConfig() {
     const owner = document.getElementById('gh_owner').value.trim();
     const repo = document.getElementById('gh_repo').value.trim();
     const token = document.getElementById('gh_token').value.trim();
-    const branch = document.getElementById('gh_branch').value.trim() || 'main';
+    const branch = document.getElementById('gh_branch').value.trim() || 'master';
 
     if (!owner || !repo || !token) {
         showToast('Vui lòng điền đầy đủ thông tin!', 'error');
