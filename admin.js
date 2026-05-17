@@ -21,6 +21,11 @@ let siteData = {};
 let githubConfig = null;
 let fileSha = null;
 
+// Save queue to prevent SHA race conditions
+let _saveQueue = Promise.resolve();
+let _saveDebounceTimer = null;
+const SAVE_DEBOUNCE_MS = 800;
+
 // === INIT ===
 document.addEventListener('DOMContentLoaded', () => {
     // Load GitHub config from localStorage (only on admin's machine)
@@ -158,14 +163,25 @@ async function loadDataFromGitHub() {
     }
 }
 
-async function saveDataToGitHub(message) {
+// Safe base64 encoding that handles large Uint8Arrays without stack overflow
+function uint8ToBase64(bytes) {
+    const CHUNK = 8192;
+    let binary = '';
+    for (let i = 0; i < bytes.length; i += CHUNK) {
+        const slice = bytes.subarray(i, Math.min(i + CHUNK, bytes.length));
+        binary += String.fromCharCode.apply(null, slice);
+    }
+    return btoa(binary);
+}
+
+async function _doSaveToGitHub(message) {
     updateStatus('Đang lưu...', 'saving');
     try {
         const jsonStr = JSON.stringify(siteData, null, 2);
-        // Encode UTF-8 properly
+        // Encode UTF-8 properly using chunked approach (no stack overflow)
         const encoder = new TextEncoder();
         const bytes = encoder.encode(jsonStr);
-        const base64 = btoa(String.fromCharCode(...bytes));
+        const base64 = uint8ToBase64(bytes);
 
         const body = {
             message: message || 'Cập nhật từ Admin CMS',
@@ -181,6 +197,25 @@ async function saveDataToGitHub(message) {
             updateStatus('Đã lưu ✓', 'saved');
             setTimeout(() => updateStatus('GitHub ✓', 'connected'), 2000);
             return true;
+        } else if (res.status === 409) {
+            // SHA conflict — reload SHA and retry once
+            console.warn('[Admin CMS] SHA conflict, reloading...');
+            const reload = await githubAPI('GET', DATA_FILE);
+            if (reload.ok) {
+                const reloadJson = await reload.json();
+                fileSha = reloadJson.sha;
+                // Retry save with new SHA
+                body.sha = fileSha;
+                const retry = await githubAPI('PUT', DATA_FILE, body);
+                if (retry.ok) {
+                    const retryResult = await retry.json();
+                    fileSha = retryResult.content.sha;
+                    updateStatus('Đã lưu ✓', 'saved');
+                    setTimeout(() => updateStatus('GitHub ✓', 'connected'), 2000);
+                    return true;
+                }
+            }
+            throw new Error('SHA conflict — vui lòng thử lại');
         } else {
             const err = await res.json();
             throw new Error(err.message || `HTTP ${res.status}`);
@@ -188,8 +223,17 @@ async function saveDataToGitHub(message) {
     } catch (err) {
         updateStatus('Lỗi lưu!', 'error');
         showToast('Lỗi lưu GitHub: ' + err.message, 'error');
+        console.error('[Admin CMS] Save error:', err);
         return false;
     }
+}
+
+// Queued save — prevents concurrent saves and SHA race conditions
+function saveDataToGitHub(message) {
+    _saveQueue = _saveQueue.then(() => _doSaveToGitHub(message)).catch(err => {
+        console.error('[Admin CMS] Queue error:', err);
+    });
+    return _saveQueue;
 }
 
 // === IMAGE UPLOAD TO GITHUB ===
@@ -242,7 +286,11 @@ function getData(key) {
 
 function setData(key, value) {
     siteData[key] = value;
-    saveDataToGitHub(`Cập nhật ${key}`);
+    // Debounced save — batches rapid edits (add/remove) into one GitHub commit
+    if (_saveDebounceTimer) clearTimeout(_saveDebounceTimer);
+    _saveDebounceTimer = setTimeout(() => {
+        saveDataToGitHub(`Cập nhật ${key}`);
+    }, SAVE_DEBOUNCE_MS);
 }
 
 // === UI HELPERS ===
