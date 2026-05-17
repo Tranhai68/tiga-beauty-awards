@@ -293,5 +293,8 @@
     "youtube": "https://www.youtube.com/@TranNgoc-NguoiKienTao",
     "tiktok": "https://www.tiktok.com/@tranngocmkt",
     "zalo": ""
+  },
+  "banners": {
+    "hero": "https://raw.githubusercontent.com/Tranhai68/tiga-beauty-awards/master/images/1779009840007_nhba2.png"
   }
 }
